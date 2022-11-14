@@ -52,13 +52,16 @@ const SingleTodo: React.FC<SingleTodoProps> = ({ todo, todos, setTodos }) => {
           onChange={(e) => setEditTodo(e.target.value)}
           className="todos__single--text"
           ref={inputRef}
+          data-testid="input-block"
         />
       ) : todo.completed ? (
         <s className="todos__single--text" data-testid="strike">
           {todo.todo}
         </s>
       ) : (
-        <span className="todos__single--text">{todo.todo}</span>
+        <span className="todos__single--text" data-testid="text">
+          {todo.todo}
+        </span>
       )}
       <div>
         <span
@@ -68,10 +71,15 @@ const SingleTodo: React.FC<SingleTodoProps> = ({ todo, todos, setTodos }) => {
               setEdit(!edit);
             }
           }}
+          data-testid={"edited"}
         >
           <AiFillEdit />
         </span>
-        <span className="icon" onClick={() => handleDelete(todo.id)}>
+        <span
+          className="icon"
+          onClick={() => handleDelete(todo.id)}
+          data-testid={"deleted"}
+        >
           <AiFillDelete />
         </span>
         <span
